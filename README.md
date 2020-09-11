@@ -41,9 +41,9 @@ Your project is a `nodejs` server based on `Express` or something similar. Help-
 npm i help-me-respond --save
 ````
 
-2. Create a *config/* folder in the root of your project. That is where all the config for the library lives.
+1. Create a *config/* folder in the root of your project. That is where all the config for the library lives.
 
-3. Create *config/default.json* for the general library config
+2. Create *config/default.json* for the general library config
 
 ```
 {
@@ -54,7 +54,7 @@ npm i help-me-respond --save
 }
 ```
 
-4. Create *config/messages.json* for the response messages and friendly messages setup.
+3. Create *config/messages.json* for the response messages and friendly messages setup.
 
 ```
 {
