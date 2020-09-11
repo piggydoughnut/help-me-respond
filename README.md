@@ -1,113 +1,116 @@
 ## Help me respond
 
-Hello there :)
+Hello there :) 👋🏼
 
 Thank you for your interest in *help-me-respond*!
 
-Any feedback is highly appreciated. In case you run into problems please feel free to create an issue for me at [https://github.com/Symphony9/help-me-respond/issues](https://github.com/Symphony9/help-me-respond/issues)
+In case you run into problems please feel free to create an issue for me at [the Issues Tab](https://github.com/piggydoughnut/help-me-respond/issues)
 
-Have fun coding using this little lib <3
+Your feedback is highly appreciated! 🌸
+
+[Prerequisites for usage](README.md#prerequisites-for-usage)
+
+[Installation](README.md#installation)
+
+[Localization](README.md#localization)
+   
+[Pass arguments to your messages](README.md#pass-arguments-to-your-messages)
+
+[API](README.md#api)
+
+[Response examples](README.md#response-examples)
 
 ## About
 
-This is a simple response helper which should make your life a bit easier. It supports localization and friendly messages for users.
-Help-me-respond preconfigures HTTP responses for you by setting the status code, processing the message and setting headers. You only need to call one of the API functions and pass the message in a form of a string or an object to it.
+This is a simple response helper which should make your life a bit easier. 
 
-## UPDATES
+It supports localization and friendly messages for users.
 
-08.01.2018
+`Help-me-respond` preconfigures HTTP responses for you by setting the status code, processing the message and setting headers. You only need to call one of the API functions and pass the message in a form of a string or an object to it.
 
-The library became lighter! :) I removed config library dependency in order to minimize dependencies, however you can still use it since the config folder structure I am following here is the same as for the [node-config](https://github.com/lorenwest/node-config);
-
-The library is **easier to configure**. No need to configure anything :) Just start using it!
-
-**Localization** became optional.
-
-
-### BREAKING CHANGES:
-
-Removed *code* key from the error response message object. If u were using this, please use the code in the Express HTTP Response object.
-
-Removed `http502`.
-
+[Release info](https://github.com/piggydoughnut/help-me-respond/releases)
 
 ## Prerequisites for usage
-Your project is a nodejs server based on Express or something similar. Help-me-respond uses the res object from Express, which represents an HTTP response.
 
-## Setup
+Your project is a `nodejs` server based on `Express` or something similar. Help-me-respond uses the `res` object from Express, which represents an HTTP response.
 
-### Install with
+
+## Installation
 
 ```
 npm i help-me-respond --save
 ````
 
-*OPTIONAL*: Create *config/messages.json* file. We don't want our messages to be hardcoded in the code, so we will keep them in a separate file.
+1. Create a *config/* folder in the root of your project. That is where all the config for the library lives.
+
+2. Create *config/default.json* for the general library config
 
 ```
 {
-	"MESSAGE_NAME1": "Very long and important message text.",
-    "MESSAGE_NAME2": "Very long and important message text2."  
+  "logging": false,
+  "prefixNone": false,  # when you server returns any data, a prefix "data" is added to the response
+  "disableJsonHeader": false # remove the default 'application/json' header
+  "friendlyMessages": [] # array of message keys which are defined in message.json or locales.json
 }
 ```
 
-## Configuration
-
-All the configurations are put in **config/** folder in the root of your project.
-
-### Logging
-
-**config/default.json**
-
-    {
-    	"logging": true
-    }
-
-`False` by default.
-
-### User friendly messages
-
-Some messages returned from the server are too technical for  users. So we would like to differentiate between those messages and user friendly messages. See example below. You can use it for messages in *messages.json* or *locales.json*
-
-**config/messages.json**
-
-    {
-      "messageOne": "This is the first message",
-      "messageTwo": "This is the second message"
-    }
-
-**config/default.json**
-
-    {
-    	"friendlyMessages": ["messageOne", "messageTwo"]
-    }
-
-Once the message name is in the above array, the response will have a key **friendlyMessage** which makes it easy for front-end to differentiate between messages.
-
-
-
-### Localization
-
-You will need to add the following to your **config/default.json** file. This is a basic setup for the i18n-nodejs - https://github.com/eslam-mahmoud/i18n-nodejs
-
-
-    {
-    	"lang": "en",
-    	"langFile": "../../config/locales.json"
-    }
-
-*langFile* path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
-
-* Create the specified above locales folder and locales file and add some messages there.
+3. Create *config/messages.json* for the response messages and friendly messages setup.
 
 ```
 {
-	"SHARING_ERROR": {
-		"en": "You cannot share the link with yourself."
-	},
-	"NOT_OWNER": {
-		"en": "You are not the owner."
-	}
+    "welcome": "Welcome to the platform!",
+    "notFound": "Unfortunately the given record was not found. Please check your input details."
+}
+```
+
+
+### Friendly Messages
+   
+Some messages returned from the server are too technical for users. We want to differentiate between those messages and user friendly messages. See example below.
+    
+To enable Friendly messages you just need to edit the *config/default.json* and specify which messages are the friendly ones. The messages itself have to be defined in the *config/messages.json* (or *config/locales.json* if you are using localization).
+
+```
+config/default.json
+
+{
+    "friendlyMessages": ["welcome", "notFound"]
+}
+```
+    
+Once the message name is in the above array, the response object will have a key *friendlyMessage* which makes it easy for front-end to differentiate between messages.
+
+
+## Localization
+
+Sometimes you need to support more than one language.
+
+1. This is a basic setup for the [i18n-nodejs](https://github.com/eslam-mahmoud/i18n-nodejs).
+```
+config/default.json
+
+{
+    "lang": "en",
+    "langFile": "../../config/locales.json" 
+}
+```
+
+`lang` is the default language of your application
+
+`langFile` path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
+
+2. Create `config/locales.json` file and add some messages there.
+
+```
+config/locales.json
+
+{
+    "SHARING_ERROR": {
+	"en": "You cannot share the link with yourself."
+    },
+    "NOT_OWNER": {
+	"en": "You are not the owner."
+    }
 }
 ```
 
@@ -115,30 +118,22 @@ You will need to add the following to your **config/default.json** file. This is
 
 This works only if you are using localization.
 
-**config/locales.json**
+```
+config/locales.json
 
-    {
-      "welcome": "Welcome dear {{name}}",
+{
+    "welcome": "Welcome dear {{name}}"
+}
+```
+
+```
+  http200(res, JSON.stringify({
+    msg: 'welcome',
+    args: {
+      name: 'Mike'
     }
-
-**somewhere in the code**
-
-    http200(res, JSON.stringify({
-      msg: 'welcome',
-      args: {
-        name: 'Mike'
-      }
-    }));
-
-### Turn off data prefix
-When you server returns any data, a prefix **data** is added to response.
-
-You can turn it off by setting **prefixNone** to **true** in your config file. For more info about config see [Config setup](#config-setup) above.
-
-
-### Turn off default 'application/json' header
-
-Remove the default *application/json* header by setting **disableJsonHeader** to **true** in your config file. For more info about config see [Config setup](#config-setup) above.
+  }))
+ ```
 
 ## API
 
