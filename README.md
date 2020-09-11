@@ -67,12 +67,14 @@ npm i help-me-respond --save
 Some messages returned from the server are too technical for users. We want to differentiate between those messages and user friendly messages. See example below.
     
 To enable Friendly messages you just need to edit the *config/default.json* and specify which messages are the friendly ones. The messages itself have to be defined in the *config/messages.json* (or *config/locales.json* if you are using localization).
- 
-*config/default.json*
 
-    {
-      "friendlyMessages": ["welcome", "notFound"]
-    }
+```
+config/default.json
+
+{
+    "friendlyMessages": ["welcome", "notFound"]
+}
+```
     
 Once the message name is in the above array, the response object will have a key *friendlyMessage* which makes it easy for front-end to differentiate between messages.
 
@@ -81,26 +83,32 @@ Once the message name is in the above array, the response object will have a key
 
 Sometimes you need to support more than one language.
 
-1. You will need to add the following to your `config/default.json` file. This is a basic setup for the i18n-nodejs - https://github.com/eslam-mahmoud/i18n-nodejs
+1. This is a basic setup for the [i18n-nodejs](https://github.com/eslam-mahmoud/i18n-nodejs).
+```
+config/default.json
 
-    {
-    	"lang": "en",
-    	"langFile": "../../config/locales.json" 
-    }
+{
+    "lang": "en",
+    "langFile": "../../config/locales.json" 
+}
+```
 
 `lang` is the default fallback language of your application
+
 `langFile` path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
 
-2. Create the specified above locales folder and locales file and add some messages there.
+2. Create `config/locales.json` file and add some messages there.
 
 ```
+config/locales.json
+
 {
-	"SHARING_ERROR": {
-		"en": "You cannot share the link with yourself."
-	},
-	"NOT_OWNER": {
-		"en": "You are not the owner."
-	}
+    "SHARING_ERROR": {
+	"en": "You cannot share the link with yourself."
+    },
+    "NOT_OWNER": {
+	"en": "You are not the owner."
+    }
 }
 ```
 
@@ -108,21 +116,22 @@ Sometimes you need to support more than one language.
 
 This works only if you are using localization.
 
-1. `config/locales.json`
+```
+config/locales.json
 
-    {
-      "welcome": "Welcome dear {{name}}",
+{
+    "welcome": "Welcome dear {{name}}"
+}
+```
+
+```
+  http200(res, JSON.stringify({
+    msg: 'welcome',
+    args: {
+      name: 'Mike'
     }
-
-2. Add somewhere in your code
-
-    http200(res, JSON.stringify({
-      msg: 'welcome',
-      args: {
-        name: 'Mike'
-      }
-    }));
-----------------
+  }))
+ ```
 
 ## API
 
