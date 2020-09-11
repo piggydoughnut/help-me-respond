@@ -8,8 +8,6 @@ In case you run into problems please feel free to create an issue for me at [the
 
 Your feedback is highly appreciated! 🌸
 
-[About](README.md#about)
-
 [Prerequisites for usage](README.md#prerequisites-for-usage)
 
 [Installation](README.md#installation)
@@ -17,6 +15,10 @@ Your feedback is highly appreciated! 🌸
 [Localization](README.md#localization)
    
 [Pass arguments to your messages](README.md#pass-arguments-to-your-messages)
+
+[API](README.md#api)
+
+[Response examples](README.md#response-examples)
 
 ## About
 
