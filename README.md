@@ -8,15 +8,15 @@ In case you run into problems please feel free to create an issue for me at [the
 
 Your feedback is highly appreciated! 🌸
 
-[About](Readme.md#about)
+[About](README.md#about)
 
-[Prerequisites for usage](Readme.md#prerequisites-for-usage)
+[Prerequisites for usage](README.md#prerequisites-for-usage)
 
-[Installation](Readme.md#installation)
+[Installation](README.md#installation)
 
-[Localization](Readme.md#localization)
+[Localization](README.md#localization)
    
-[Pass arguments to your messages](Readme.md#pass-arguments-to-your-messages)
+[Pass arguments to your messages](README.md#pass-arguments-to-your-messages)
 
 ## About
 
