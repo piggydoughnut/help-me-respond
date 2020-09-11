@@ -8,6 +8,16 @@ In case you run into problems please feel free to create an issue for me at [the
 
 Your feedback is highly appreciated! 🌸
 
+[About](Readme.md#about)
+
+[Prerequisites for usage](Readme.md#prerequisites-for-usage)
+
+[Installation](Readme.md#installation)
+
+[Localization](Readme.md#localization)
+   
+[Pass arguments to your messages](Readme.md#pass-arguments-to-your-messages)
+
 ## About
 
 This is a simple response helper which should make your life a bit easier. 
@@ -22,63 +32,59 @@ It supports localization and friendly messages for users.
 
 Your project is a `nodejs` server based on `Express` or something similar. Help-me-respond uses the `res` object from Express, which represents an HTTP response.
 
-## Setup
 
-### Install with
+## Installation
 
 ```
 npm i help-me-respond --save
 ````
 
-
-## Configuration
-
-All the configurations have to be put in **config/** folder in the root of your project.
-
-### Optional
-
-Create *config/messages.json* file for storing your response messages 
+2. Create a *config/* folder in the root of your project. That is where all the config for the library lives.
 
 ```
 {
-    "MESSAGE_NAME1": "Very long and important message text.",
-    "MESSAGE_NAME2": "Very long and important message text2."  
+  "logging": false,
+  "prefixNone": false,  # when you server returns any data, a prefix "data" is added to the response
+  "disableJsonHeader": false # remove the default 'application/json' header
 }
 ```
 
-### Logging
+3. Create *config/default.json* for the general library config
 
-`False` by default.
+4. Create *config/messages.json* for the response messages and friendly messages setup.
 
-**config/default.json**
+```
+{
+    "messageOne": "This is the first message",
+    "messageTwo": "This is the second message"
+}
+```
 
-    {
-    	"logging": true
-    }
-
-
-### User friendly messages
-
-Some messages returned from the server are too technical for  users. So we would like to differentiate between those messages and user friendly messages. See example below. You can use it for messages in *messages.json* or *locales.json*
-
-**config/messages.json**
+   #### Response Messages
+    
+*config/messages.json*
 
     {
       "messageOne": "This is the first message",
       "messageTwo": "This is the second message"
     }
 
-**config/default.json**
+   #### Friendly Messages 
+   
+Some messages returned from the server are too technical for users. We want to differentiate between those messages and user friendly messages. See example below.
+    
+To enable Friendly messages you just need to edit the *config/default.json* and specify which messages are the friendly ones. The messages itself have to be defined in the *config/messages.json* (or *config/locales.json* if you are using localization).
+ 
+*config/default.json*
 
     {
-    	"friendlyMessages": ["messageOne", "messageTwo"]
+      "friendlyMessages": ["messageOne", "messageTwo"]
     }
+    
+Once the message name is in the above array, the response object will have a key *friendlyMessage* which makes it easy for front-end to differentiate between messages.
 
-Once the message name is in the above array, the response will have a key **friendlyMessage** which makes it easy for front-end to differentiate between messages.
 
-
-
-### Localization
+## Localization
 
 You will need to add the following to your **config/default.json** file. This is a basic setup for the i18n-nodejs - https://github.com/eslam-mahmoud/i18n-nodejs
 
@@ -123,14 +129,16 @@ This works only if you are using localization.
     }));
 
 ### Turn off data prefix
-When you server returns any data, a prefix **data** is added to response.
 
-You can turn it off by setting **prefixNone** to **true** in your config file. For more info about config see [Config setup](#config-setup) above.
+When you server returns any data, a prefix **data** is added to the response.
+
+You can turn it off by setting **prefixNone** to **true** in your config file. 
 
 
 ### Turn off default 'application/json' header
 
-Remove the default *application/json* header by setting **disableJsonHeader** to **true** in your config file. For more info about config see [Config setup](#config-setup) above.
+Remove the default *application/json* header by setting **disableJsonHeader** to **true** in your config file. 
+
 
 ## API
 
