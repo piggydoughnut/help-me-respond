@@ -41,35 +41,28 @@ npm i help-me-respond --save
 
 2. Create a *config/* folder in the root of your project. That is where all the config for the library lives.
 
+3. Create *config/default.json* for the general library config
+
 ```
 {
   "logging": false,
   "prefixNone": false,  # when you server returns any data, a prefix "data" is added to the response
   "disableJsonHeader": false # remove the default 'application/json' header
+  "friendlyMessages": [] # array of message keys which are defined in message.json or locales.json
 }
 ```
-
-3. Create *config/default.json* for the general library config
 
 4. Create *config/messages.json* for the response messages and friendly messages setup.
 
 ```
 {
-    "messageOne": "This is the first message",
-    "messageTwo": "This is the second message"
+    "welcome": "Welcome to the platform!",
+    "notFound": "Unfortunately the given record was not found. Please check your input details."
 }
 ```
 
-   #### Response Messages
-    
-*config/messages.json*
 
-    {
-      "messageOne": "This is the first message",
-      "messageTwo": "This is the second message"
-    }
-
-   #### Friendly Messages 
+### Friendly Messages
    
 Some messages returned from the server are too technical for users. We want to differentiate between those messages and user friendly messages. See example below.
     
@@ -78,7 +71,7 @@ To enable Friendly messages you just need to edit the *config/default.json* and 
 *config/default.json*
 
     {
-      "friendlyMessages": ["messageOne", "messageTwo"]
+      "friendlyMessages": ["welcome", "notFound"]
     }
     
 Once the message name is in the above array, the response object will have a key *friendlyMessage* which makes it easy for front-end to differentiate between messages.
@@ -86,17 +79,19 @@ Once the message name is in the above array, the response object will have a key
 
 ## Localization
 
-You will need to add the following to your **config/default.json** file. This is a basic setup for the i18n-nodejs - https://github.com/eslam-mahmoud/i18n-nodejs
+Sometimes you need to support more than one language.
 
+1. You will need to add the following to your `config/default.json` file. This is a basic setup for the i18n-nodejs - https://github.com/eslam-mahmoud/i18n-nodejs
 
     {
     	"lang": "en",
-    	"langFile": "../../config/locales.json"
+    	"langFile": "../../config/locales.json" 
     }
 
-*langFile* path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
+`lang` is the default fallback language of your application
+`langFile` path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
 
-* Create the specified above locales folder and locales file and add some messages there.
+2. Create the specified above locales folder and locales file and add some messages there.
 
 ```
 {
@@ -113,13 +108,13 @@ You will need to add the following to your **config/default.json** file. This is
 
 This works only if you are using localization.
 
-**config/locales.json**
+1. `config/locales.json`
 
     {
       "welcome": "Welcome dear {{name}}",
     }
 
-**somewhere in the code**
+2. Add somewhere in your code
 
     http200(res, JSON.stringify({
       msg: 'welcome',
@@ -127,18 +122,7 @@ This works only if you are using localization.
         name: 'Mike'
       }
     }));
-
-### Turn off data prefix
-
-When you server returns any data, a prefix **data** is added to the response.
-
-You can turn it off by setting **prefixNone** to **true** in your config file. 
-
-
-### Turn off default 'application/json' header
-
-Remove the default *application/json* header by setting **disableJsonHeader** to **true** in your config file. 
-
+----------------
 
 ## API
 
