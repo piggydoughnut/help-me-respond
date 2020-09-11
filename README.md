@@ -95,7 +95,7 @@ config/default.json
 }
 ```
 
-`lang` is the default fallback language of your application
+`lang` is the default language of your application
 
 `langFile` path is used in the library therefore, the path is relative to the *index.js* file from *help-me-respond* folder
 
