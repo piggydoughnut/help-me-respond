@@ -1,38 +1,26 @@
 ## Help me respond
 
-Hello there :)
+Hello there :) 👋🏼
 
 Thank you for your interest in *help-me-respond*!
 
-Any feedback is highly appreciated. In case you run into problems please feel free to create an issue for me at [https://github.com/Symphony9/help-me-respond/issues](https://github.com/Symphony9/help-me-respond/issues)
+In case you run into problems please feel free to create an issue for me at [the Issues Tab](https://github.com/piggydoughnut/help-me-respond/issues)
 
-Have fun coding using this little lib <3
+Your feedback is highly appreciated! 🌸
 
 ## About
 
-This is a simple response helper which should make your life a bit easier. It supports localization and friendly messages for users.
-Help-me-respond preconfigures HTTP responses for you by setting the status code, processing the message and setting headers. You only need to call one of the API functions and pass the message in a form of a string or an object to it.
+This is a simple response helper which should make your life a bit easier. 
 
-## UPDATES
+It supports localization and friendly messages for users.
 
-08.01.2018
+`Help-me-respond` preconfigures HTTP responses for you by setting the status code, processing the message and setting headers. You only need to call one of the API functions and pass the message in a form of a string or an object to it.
 
-The library became lighter! :) I removed config library dependency in order to minimize dependencies, however you can still use it since the config folder structure I am following here is the same as for the [node-config](https://github.com/lorenwest/node-config);
-
-The library is **easier to configure**. No need to configure anything :) Just start using it!
-
-**Localization** became optional.
-
-
-### BREAKING CHANGES:
-
-Removed *code* key from the error response message object. If u were using this, please use the code in the Express HTTP Response object.
-
-Removed `http502`.
-
+[Release info](https://github.com/piggydoughnut/help-me-respond/releases)
 
 ## Prerequisites for usage
-Your project is a nodejs server based on Express or something similar. Help-me-respond uses the res object from Express, which represents an HTTP response.
+
+Your project is a `nodejs` server based on `Express` or something similar. Help-me-respond uses the `res` object from Express, which represents an HTTP response.
 
 ## Setup
 
@@ -42,20 +30,25 @@ Your project is a nodejs server based on Express or something similar. Help-me-r
 npm i help-me-respond --save
 ````
 
-*OPTIONAL*: Create *config/messages.json* file. We don't want our messages to be hardcoded in the code, so we will keep them in a separate file.
+
+## Configuration
+
+All the configurations have to be put in **config/** folder in the root of your project.
+
+### Optional
+
+Create *config/messages.json* file for storing your response messages 
 
 ```
 {
-	"MESSAGE_NAME1": "Very long and important message text.",
+    "MESSAGE_NAME1": "Very long and important message text.",
     "MESSAGE_NAME2": "Very long and important message text2."  
 }
 ```
 
-## Configuration
-
-All the configurations are put in **config/** folder in the root of your project.
-
 ### Logging
+
+`False` by default.
 
 **config/default.json**
 
@@ -63,7 +56,6 @@ All the configurations are put in **config/** folder in the root of your project
     	"logging": true
     }
 
-`False` by default.
 
 ### User friendly messages
 
