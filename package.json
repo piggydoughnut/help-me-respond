@@ -1,6 +1,6 @@
 {
 	"name": "help-me-respond",
-	"version": "2.6.1",
+	"version": "2.6.2",
 	"description": "Simple nodejs Express http response helper",
 	"main": "index.js",
 	"scripts": {
@@ -18,13 +18,13 @@
 		"express response",
 		"express http response"
 	],
-	"author": "Daria Mikhailova <drmikhailova@gmail.com>",
+	"author": "Daria Mikhailova <hello@daria.engineer>",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Symphony9/help-me-respond"
+		"url": "https://github.com/piggydoughnut/help-me-respond/"
 	},
 	"bugs": {
-		"url": "https://github.com/Symphony9/help-me-respond/issues"
+		"url": "https://github.com/piggydoughnut/help-me-respond/issues"
 	},
 	"license": "ISC",
 	"dependencies": {
